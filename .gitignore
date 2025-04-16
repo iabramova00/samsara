@@ -1,0 +1,29 @@
+# Node
+node_modules/
+.env
+.env.local
+
+# Logs
+logs
+*.log
+
+# Build
+dist/
+build/
+.cache/
+.vite/
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
+
+# Testing
+coverage/
+
+# Docker
+docker-compose.override.yml
+
+# Prisma
+/prisma/dev.db
+/prisma/dev.db-journal
