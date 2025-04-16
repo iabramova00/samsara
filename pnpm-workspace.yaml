@@ -1,0 +1,6 @@
+packages:
+  # Include packages in the frontend directory
+  - 'frontend'
+  # Include packages in the backend directory
+  - 'backend'
+  # You could also use wildcards like 'packages/*' if you had more workspaces

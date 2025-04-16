@@ -1,11 +1,9 @@
-#!/bin/sh
-if [ -z "$HUSKY" ]; then
-  debug () {
-    if [ "$HUSKY_DEBUG" = "1" ]; then
-      echo "> $*" >&2
-    fi
-  }
+echo "husky - DEPRECATED
 
-  debug "executing husky.sh"
-  export PATH="$PATH:./node_modules/.bin"
-fi
+Please remove the following two lines from $0:
+
+#!/usr/bin/env sh
+. \"\$(dirname -- \"\$0\")/_/husky.sh\"
+
+They WILL FAIL in v10.0.0
+"

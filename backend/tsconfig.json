@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "target": "ES2016", // Or newer target like ES2020
+      "module": "CommonJS", // Standard for Node.js
+      "outDir": "./dist", // Output directory for compiled JS
+      "rootDir": "./src", // Source directory
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true // Allow importing JSON files
+    },
+    "include": ["src/**/*"], // Files to include in compilation
+    "exclude": ["node_modules", "**/*.spec.ts"] // Files to exclude
+  }
+  
