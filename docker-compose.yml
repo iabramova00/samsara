@@ -1,0 +1,27 @@
+# docker-compose.yml
+version: '3.8' # Specifies the version of the Docker Compose file format
+
+services:
+  # Define the PostgreSQL service
+  db:
+    image: postgres:15 # Use the official PostgreSQL image (version 15 is a good choice)
+    container_name: my_project_db # Give the container a specific name (optional)
+    restart: always # Automatically restart the container if it stops
+    ports:
+      # Map port 5432 on your host machine to port 5432 inside the container
+      # Format: "HOST_PORT:CONTAINER_PORT"
+      - "5432:5432"
+    environment:
+      # Set environment variables for the PostgreSQL container
+      # These define the default user, password, and database that will be created
+      POSTGRES_USER: myuser # Choose a username
+      POSTGRES_PASSWORD: mypassword # Choose a strong password
+      POSTGRES_DB: mydatabase # Choose a database name
+    volumes:
+      # Mount a Docker volume to persist database data even if the container is removed
+      # This creates a named volume called 'postgres_data'
+      - postgres_data:/var/lib/postgresql/data
+
+# Define the named volume used above
+volumes:
+  postgres_data:
