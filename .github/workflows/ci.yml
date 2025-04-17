@@ -1,0 +1,77 @@
+# .github/workflows/ci.yml
+
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+  pull_request:
+    branches: [ "main", "dev" ]
+
+jobs:
+  backend-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      # Backend Linting (Placeholder)
+      # - name: Lint Backend Code
+      #   run: pnpm --filter backend run lint
+
+      - name: Validate Prisma Schema
+        run: pnpm --filter backend exec -- npx prisma validate
+
+      - name: Generate Prisma Client
+        run: pnpm --filter backend exec -- npx prisma generate
+
+      # Backend Testing (Placeholder)
+      # - name: Run Backend Tests
+      #   run: pnpm --filter backend run test
+
+  frontend-ci: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install # Needs to run in both jobs if they run in parallel on different runners
+
+      # Frontend Linting (Uses script from frontend/package.json)
+      - name: Lint Frontend Code
+        run: pnpm --filter frontend run lint
+
+      # Frontend Testing (Placeholder)
+      # - name: Run Frontend Tests
+      #   # Assumes 'test' script exists in frontend/package.json
+      #   run: pnpm --filter frontend run test
+
+      # Frontend Build (Uses script from frontend/package.json)
+      - name: Build Frontend
+        run: pnpm --filter frontend run build

@@ -1,5 +1,5 @@
 # Handle line endings automatically for text files
-* text=auto eol=lf
+* text=auto
 
 # Explicitly declare files that will always have LF line endings
 *.js text eol=lf
